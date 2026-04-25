@@ -735,59 +735,6 @@ body {
 }
 .dd-reset-btn:hover { background:rgba(201,168,76,0.1); }
 
-/* ════════════════════════════
-   SLIDE 8 – AKHIRA COUNTER
-════════════════════════════ */
-#s8 {
-  background: radial-gradient(ellipse at 50% 30%, #0a2010 0%, #06100a 50%, var(--deep) 100%);
-  justify-content:center;
-}
-.akhira-wrap { max-width:780px; width:100%; text-align:center; }
-.akhira-title { font-family:'Amiri',serif; font-size:clamp(30px,5vw,64px); color:var(--gold-light); margin-bottom:6px; }
-.akhira-sub { font-size:14px; color:rgba(245,240,232,0.5); margin-bottom:38px; line-height:1.8; }
-.akhira-counter-box {
-  background:rgba(34,197,94,0.06); border:2px solid rgba(34,197,94,0.4);
-  border-radius:28px; padding:40px 32px; position:relative; overflow:hidden;
-  margin-bottom:28px;
-  box-shadow:0 0 60px rgba(34,197,94,0.1);
-}
-.akhira-counter-box::before {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse at 50% 0%, rgba(34,197,94,0.12), transparent 60%);
-}
-.akhira-label { font-size:13px; color:rgba(245,240,232,0.5); letter-spacing:3px; margin-bottom:18px; }
-.akhira-number {
-  font-size:clamp(60px,12vw,110px); font-weight:900; color:#4ade80;
-  font-family:'Cairo',sans-serif; line-height:1;
-  text-shadow: 0 0 40px rgba(74,222,128,0.5), 0 0 80px rgba(34,197,94,0.3);
-  transition: transform .1s;
-  position:relative; z-index:1;
-}
-.akhira-number.tick { transform:scale(1.08); }
-.akhira-unit { font-size:18px; color:rgba(74,222,128,0.7); margin-top:8px; letter-spacing:2px; position:relative; z-index:1; }
-.akhira-equivalent {
-  margin-top:20px; padding:14px 22px; background:rgba(201,168,76,0.06);
-  border:1px solid rgba(201,168,76,0.25); border-radius:14px;
-  font-size:14px; color:var(--cream2); line-height:1.8; position:relative; z-index:1;
-}
-.akhira-equivalent span { color:var(--gold-light); font-weight:700; }
-.akhira-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:28px; }
-.akhira-card {
-  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
-  border-radius:18px; padding:20px 16px; text-align:center; transition:all .3s;
-}
-.akhira-card:hover { background:rgba(34,197,94,0.08); border-color:rgba(34,197,94,0.4); transform:translateY(-4px); }
-.akhira-card-icon { font-size:32px; margin-bottom:10px; }
-.akhira-card-title { font-size:15px; font-weight:700; color:var(--gold-light); margin-bottom:6px; }
-.akhira-card-body { font-size:12px; line-height:1.8; color:rgba(245,240,232,0.6); }
-.akhira-toggle {
-  padding:11px 34px; background:transparent; border:2px solid rgba(34,197,94,0.5);
-  color:#4ade80; border-radius:50px; font-family:'Cairo',sans-serif; font-size:14px; font-weight:700;
-  cursor:pointer; transition:all .25s;
-}
-.akhira-toggle:hover { background:rgba(34,197,94,0.12); }
-.akhira-toggle.running { background:rgba(239,68,68,0.1); border-color:rgba(239,68,68,0.5); color:#f87171; }
-
 /* ── RESPONSIVE for new slides ── */
 @media (max-width:640px) {
   .dd-layout { grid-template-columns:1fr; }
@@ -807,6 +754,280 @@ body {
   .question-card { padding:22px 18px; }
   .gc-question-area { padding:20px 16px; }
 }
+
+/* ════════════════════════════
+   SLIDE 7 – مراجعة لما سبق
+════════════════════════════ */
+#s8 { background: radial-gradient(ellipse at 40% 50%, #0d1f30 0%, var(--deep) 70%); }
+.rev-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+}
+.rev-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 20px;
+  padding: 26px 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: rev-reveal .55s ease forwards;
+  animation-delay: var(--delay, 0s);
+  transition: transform .3s, border-color .3s, background .3s;
+}
+.rev-card:hover {
+  background: rgba(201,168,76,0.07);
+  border-color: rgba(201,168,76,0.5);
+  transform: translateY(-4px);
+}
+.rev-icon { font-size: 38px; margin-bottom: 12px; }
+.rev-label {
+  font-size: 15px; font-weight: 700;
+  color: var(--gold-light); margin-bottom: 10px;
+}
+.rev-body {
+  font-size: 13px; line-height: 1.9;
+  color: rgba(245,240,232,0.65);
+}
+@keyframes rev-reveal {
+  to { opacity:1; transform:translateY(0); }
+}
+@media (max-width: 700px) {
+  .rev-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .rev-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ════════════════════════════
+   MYSTERY GIFT OVERLAY
+════════════════════════════ */
+#gift-overlay {
+  position: fixed; inset: 0; z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(4,8,18,0.97);
+  backdrop-filter: blur(18px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s ease;
+}
+#gift-overlay.active { opacity: 1; pointer-events: all; }
+
+/* Spinning gold ring behind modal */
+#gift-overlay .gift-ring {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.12);
+  animation: ring-spin 18s linear infinite;
+  pointer-events: none;
+}
+#gift-overlay .gift-ring::before {
+  content:'';
+  position: absolute; inset: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.07);
+}
+@keyframes ring-spin { to { transform: rotate(360deg); } }
+
+.gift-modal {
+  background: linear-gradient(155deg, #0c1828 0%, #101d30 50%, #080f1c 100%);
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 40px;
+  padding: 48px 52px 44px;
+  text-align: center;
+  max-width: 680px;
+  width: 96%;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(201,168,76,0.08),
+    0 0 60px rgba(201,168,76,0.15),
+    0 40px 120px rgba(0,0,0,0.8);
+  animation: modal-enter .5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes modal-enter {
+  from { transform: scale(0.82) translateY(30px); opacity:0; }
+  to   { transform: scale(1) translateY(0);       opacity:1; }
+}
+.gift-modal::before {
+  content:'';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(201,168,76,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 110%, rgba(30,107,107,0.12) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* ── CLOSED STATE ── */
+.gift-top-label {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px; letter-spacing: 5px;
+  color: rgba(201,168,76,0.6);
+  margin-bottom: 28px;
+  position: relative; z-index: 1;
+  text-transform: uppercase;
+}
+
+.gift-box-wrap {
+  position: relative; z-index: 1;
+  width: 240px; height: 240px;
+  margin: 0 auto 20px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 40px rgba(201,168,76,0.35));
+  transition: filter .3s;
+}
+.gift-box-wrap:hover { filter: drop-shadow(0 0 60px rgba(201,168,76,0.6)); }
+.gift-box-icon {
+  font-size: 170px; line-height: 1;
+  display: block;
+  animation: gift-float 2.2s ease-in-out infinite;
+}
+@keyframes gift-float {
+  0%,100% { transform: translateY(0) rotate(-2deg) scale(1); }
+  50%      { transform: translateY(-18px) rotate(2deg) scale(1.06); }
+}
+.gift-tap-hint {
+  font-family: 'Cairo', sans-serif;
+  font-size: 17px; color: var(--gold); font-weight: 700;
+  animation: pulse-hint 1.1s ease-in-out infinite;
+  margin-bottom: 4px; position: relative; z-index: 1;
+  letter-spacing: 2px;
+}
+@keyframes pulse-hint {
+  0%,100% { opacity:.5; transform: scale(1); }
+  50%      { opacity:1;  transform: scale(1.04); }
+}
+
+/* ── REVEALED STATE ── */
+#gift-reveal-area {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  position: relative; z-index: 1;
+  width: 100%;
+}
+
+/* Grid of snack cards */
+.gift-snack-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 22px;
+}
+.gift-snack-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 22px;
+  padding: 18px 20px 14px;
+  min-width: 120px;
+  opacity: 0;
+  transform: translateY(28px) scale(0.85);
+  animation: snack-pop .55s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  animation-delay: var(--d, 0s);
+}
+@keyframes snack-pop {
+  to { opacity:1; transform: translateY(0) scale(1); }
+}
+.gift-snack-card img {
+  width: 110px; height: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(201,168,76,0.3));
+}
+.gift-snack-card .snack-label {
+  font-family: 'Amiri', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--gold-light);
+  text-shadow: 0 0 20px rgba(201,168,76,0.4);
+}
+.gift-snack-card .snack-qty {
+  font-family: 'Cairo', sans-serif;
+  font-size: 12px;
+  color: rgba(245,240,232,0.45);
+  margin-top: -6px;
+}
+
+/* bundle label */
+.gift-reveal-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(20px, 3vw, 30px);
+  color: var(--gold-light);
+  margin-bottom: 24px;
+  text-shadow: 0 0 30px rgba(201,168,76,0.35);
+  position: relative; z-index: 1;
+}
+
+.gift-close-btn {
+  display: none;
+  padding: 15px 60px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  border: none; border-radius: 50px;
+  font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 700;
+  color: var(--deep); cursor: pointer;
+  transition: all .25s;
+  position: relative; z-index: 1;
+  box-shadow: 0 6px 28px rgba(201,168,76,0.45);
+  margin-top: 4px;
+}
+.gift-close-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(201,168,76,0.65); }
+
+/* ── CAKEBOX WINNER OVERLAY ── */
+#cakebox-overlay {
+  position: fixed; inset: 0; z-index: 10001;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(8,15,26,0.92); backdrop-filter: blur(8px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s;
+}
+#cakebox-overlay.active { opacity: 1; pointer-events: all; }
+.cakebox-modal {
+  background: linear-gradient(135deg, #1a1200, #0d1b2e);
+  border: 2px solid #ffd700;
+  border-radius: 28px;
+  padding: 50px 60px;
+  text-align: center;
+  max-width: 480px; width: 92%;
+  box-shadow: 0 0 80px rgba(255,215,0,0.3);
+  animation: pop-in .6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.cakebox-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(24px,4vw,44px);
+  color: #ffd700; margin-bottom: 6px;
+}
+.cakebox-sub {
+  font-size: 14px; color: rgba(245,240,232,0.5);
+  margin-bottom: 28px;
+}
+.cakebox-img {
+  width: 200px; height: 200px;
+  object-fit: contain;
+  margin: 0 auto 20px; display: block;
+  animation: pop-in .7s .1s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.cakebox-team {
+  font-size: 22px; font-weight: 900;
+  margin-bottom: 28px;
+}
+.cakebox-close {
+  padding: 12px 48px;
+  background: linear-gradient(135deg, #ffd700, #d97706);
+  border: none; border-radius: 50px;
+  font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 700;
+  color: #111; cursor: pointer; transition: all .25s;
+}
+.cakebox-close:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,215,0,0.5); }
+
 </style>
 </head>
 <body>
@@ -1031,48 +1252,76 @@ body {
 </div>
 
 <!-- ══════════════════════════════════════════════
-     SLIDE 8 · حصالة الآخرة — AKHIRA COUNTER
+     SLIDE 8 · مراجعة سريعة — QUICK REVISION
 ══════════════════════════════════════════════ -->
 <div class="slide" id="s8">
   <div class="geo-bg"></div>
-  <div class="slide-content" style="align-items:center;justify-content:center;min-height:80vh;">
-    <div class="akhira-wrap">
-      <div class="section-badge">⏳ المحطة السابعة</div>
-      <div class="akhira-title">حصالة الآخرة</div>
-      <div class="akhira-sub">
-        لو كانت لديك صدقة جارية منذ الآن...<br>
-        كم ثانية من الأجر كانت ستتدفق إليك؟
+  <div class="slide-content">
+    <div class="section-badge">📋 المحطة السابعة</div>
+    <div class="section-title">مراجعة سريعة</div>
+    <p style="text-align:center;color:rgba(245,240,232,0.6);font-size:14px;margin-bottom:32px;max-width:600px;">قبل الاختبار — تأكّد أنك تذكر هذه النقاط الأساسية</p>
+
+    <div class="rev-grid">
+
+      <!-- Card 1 -->
+      <div class="rev-card" style="--delay:0.05s">
+        <div class="rev-icon">📜</div>
+        <div class="rev-label">الحديث ورواته</div>
+        <div class="rev-body">رواه <strong style="color:var(--gold-light)">أبو هريرة</strong> رضي الله عنه عن النبي ﷺ، وأخرجه <strong style="color:var(--gold-light)">مسلم (١٦٣١)</strong></div>
       </div>
 
-      <div class="akhira-counter-box">
-        <div class="akhira-label">◈ الثواب الجاري المحتمل ◈</div>
-        <div class="akhira-number" id="akhira-num">٠</div>
-        <div class="akhira-unit">ثانية من الأجر المستمر</div>
-        <div class="akhira-equivalent" id="akhira-equiv">
-          ابدأ العدّاد لترى كيف يتراكم الأجر ثانيةً بثانية 🌱
-        </div>
-      </div>
-
-      <div class="akhira-cards">
-        <div class="akhira-card">
-          <div class="akhira-card-icon">🕌</div>
-          <div class="akhira-card-title">مسجد يُبنى</div>
-          <div class="akhira-card-body">كل صلاة تُصلّى فيه تضاف لبانيه، وقد يصلّي فيه آلاف يوميًا</div>
-        </div>
-        <div class="akhira-card">
-          <div class="akhira-card-icon">📖</div>
-          <div class="akhira-card-title">مصحف يُوزَّع</div>
-          <div class="akhira-card-body">كل آية يتلوها القارئ تُكتب لك حسنة، إلى يوم القيامة</div>
-        </div>
-        <div class="akhira-card">
-          <div class="akhira-card-icon">🌐</div>
-          <div class="akhira-card-title">محتوى رقمي نافع</div>
-          <div class="akhira-card-body">مقطع تعليمي يشاهده الناس سنواتٍ بعد وفاتك</div>
+      <!-- Card 2 -->
+      <div class="rev-card" style="--delay:0.15s">
+        <div class="rev-icon">3️⃣</div>
+        <div class="rev-label">الثلاثة التي لا تنقطع</div>
+        <div class="rev-body">
+          🌊 <strong style="color:var(--gold-light)">صدقة جارية</strong><br>
+          📚 <strong style="color:var(--gold-light)">علم ينتفع به</strong><br>
+          🤲 <strong style="color:var(--gold-light)">ولد صالح يدعو له</strong>
         </div>
       </div>
 
-      <button class="akhira-toggle" id="akhira-btn" onclick="toggleAkhiraCounter()">▶ ابدأ العدّاد</button>
+      <!-- Card 3 -->
+      <div class="rev-card" style="--delay:0.25s">
+        <div class="rev-icon">🌊</div>
+        <div class="rev-label">لماذا «جارية»؟</div>
+        <div class="rev-body">لأن ثوابها <strong style="color:var(--gold-light)">يجري ويتدفق</strong> للمتصدِّق حتى بعد وفاته، كما يجري الماء</div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="rev-card" style="--delay:0.35s">
+        <div class="rev-icon">🕌</div>
+        <div class="rev-label">أمثلة الصدقة الجارية</div>
+        <div class="rev-body">بناء مسجد · حفر بئر · طباعة مصاحف · غرس أشجار · إنشاء موقع تعليمي</div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="rev-card" style="--delay:0.45s">
+        <div class="rev-icon">⬆️</div>
+        <div class="rev-label">دعاء الولد الصالح</div>
+        <div class="rev-body">يرفع الله <strong style="color:var(--gold-light)">درجة الوالد</strong> في الجنة بسبب استغفار ولده — ثمرة التربية الصالحة</div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="rev-card" style="--delay:0.55s">
+        <div class="rev-icon">⏳</div>
+        <div class="rev-label">العبرة الكبرى</div>
+        <div class="rev-body">اغتنم حياتك في أعمال <strong style="color:var(--gold-light)">ذات أثر مستمر</strong> — فالموت لا يوقف ثواب ما أسّسته</div>
+      </div>
+
     </div>
+
+    <div style="margin-top:36px;padding:20px 32px;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.3);border-radius:18px;max-width:700px;text-align:center;">
+      <div style="font-size:13px;color:rgba(245,240,232,0.5);margin-bottom:10px;">📝 تذكّر دائمًا</div>
+      <div style="font-family:'Amiri',serif;font-size:clamp(16px,2.5vw,22px);color:var(--cream);line-height:2;">
+        «إذا ماتَ الإنسانُ انقطعَ عنه عملُه إلا من <span style="color:var(--gold-light);font-weight:700">ثلاثة</span>»
+      </div>
+    </div>
+
+    <button onclick="goTo(8)" style="margin-top:28px;padding:13px 44px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--deep);border:none;border-radius:50px;font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 6px 24px rgba(201,168,76,0.4);transition:all .3s;"
+      onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+      ابدأ الاختبار ◀
+    </button>
   </div>
 </div>
 <!-- ══════════════════════════════════════════════
@@ -1212,14 +1461,27 @@ body {
 
       <!-- TIEBREAKER SCREEN -->
       <div class="gc-tiebreaker-screen" id="gc-tiebreaker-screen" style="display:none;text-align:center;padding:20px 0;">
-        <div style="font-size:48px;margin-bottom:12px;">⚡</div>
-        <div style="font-family:'Amiri',serif;font-size:clamp(24px,4vw,44px);color:#fbbf24;margin-bottom:8px;">تعادل! جولة الفاصل</div>
-        <div style="font-size:14px;color:rgba(245,240,232,0.6);margin-bottom:24px;" id="gc-tie-teams-label"></div>
-        <div class="gc-question-area" id="gc-tie-question-area" style="text-align:right;">
-          <div class="gc-question-text" id="gc-tie-q-text"></div>
-          <div class="gc-options" id="gc-tie-opts"></div>
-          <div id="gc-tie-feedback" style="display:none;margin-top:14px;padding:12px 18px;border-radius:14px;font-size:15px;font-weight:700;text-align:center;"></div>
-          <button id="gc-tie-next-btn" onclick="gcTieNext()" style="display:none;margin-top:14px;width:100%;padding:13px;background:linear-gradient(135deg,#fbbf24,#d97706);color:#111;border:none;border-radius:14px;font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">جولة أخرى ⚡</button>
+        <!-- Announcement Panel (shown first) -->
+        <div id="gc-tie-announce-panel">
+          <div style="font-size:64px;margin-bottom:16px;animation:floatY 2s ease-in-out infinite;">⚡</div>
+          <div style="font-family:'Amiri',serif;font-size:clamp(26px,4vw,50px);color:#fbbf24;margin-bottom:10px;">تعادل! جولة الفاصل</div>
+          <div style="font-size:15px;color:rgba(245,240,232,0.7);margin-bottom:10px;" id="gc-tie-teams-label"></div>
+          <div style="font-size:13px;color:rgba(245,240,232,0.45);margin-bottom:30px;">⚠️ السؤال القادم صعب جداً — استعدّوا!</div>
+          <button onclick="gcRevealTieQuestion()" style="padding:16px 56px;background:linear-gradient(135deg,#fbbf24,#d97706);color:#111;border:none;border-radius:50px;font-family:'Cairo',sans-serif;font-size:17px;font-weight:900;cursor:pointer;box-shadow:0 6px 28px rgba(251,191,36,0.5);transition:all .3s;"
+            onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+            متابعة ⚡
+          </button>
+        </div>
+        <!-- Question Panel (hidden until continue is clicked) -->
+        <div id="gc-tie-question-panel" style="display:none;">
+          <div style="font-size:36px;margin-bottom:10px;">🔥</div>
+          <div style="font-family:'Amiri',serif;font-size:clamp(18px,3vw,32px);color:#fbbf24;margin-bottom:20px;">سؤال الفاصل الصعب</div>
+          <div class="gc-question-area" id="gc-tie-question-area" style="text-align:right;">
+            <div class="gc-question-text" id="gc-tie-q-text"></div>
+            <div class="gc-options" id="gc-tie-opts"></div>
+            <div id="gc-tie-feedback" style="display:none;margin-top:14px;padding:12px 18px;border-radius:14px;font-size:15px;font-weight:700;text-align:center;"></div>
+            <button id="gc-tie-next-btn" onclick="gcTieNext()" style="display:none;margin-top:14px;width:100%;padding:13px;background:linear-gradient(135deg,#fbbf24,#d97706);color:#111;border:none;border-radius:14px;font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">جولة أخرى ⚡</button>
+          </div>
         </div>
       </div>
 
@@ -1237,6 +1499,40 @@ body {
 </div>
 
 
+
+
+<!-- MYSTERY GIFT OVERLAY -->
+<div id="gift-overlay">
+  <div class="gift-ring"></div>
+  <div class="gift-modal">
+    <div class="gift-top-label" id="gift-top-label">هدية السؤال</div>
+
+    <!-- Closed state: big gift box -->
+    <div class="gift-box-wrap" id="gift-box-wrap" onclick="openGift()">
+      <span class="gift-box-icon">🎁</span>
+    </div>
+    <div class="gift-tap-hint" id="gift-tap-hint">انقر لفتح الهدية!</div>
+
+    <!-- Revealed state -->
+    <div id="gift-reveal-area">
+      <div class="gift-reveal-title" id="gift-reveal-title"></div>
+      <div class="gift-snack-grid" id="gift-snack-grid"></div>
+      <button class="gift-close-btn" id="gift-close-btn" onclick="closeGift()">رائع! تابع ◀</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAKEBOX WINNER OVERLAY -->
+<div id="cakebox-overlay">
+  <div class="cakebox-modal">
+    <div style="font-size:56px;margin-bottom:12px">🏆</div>
+    <div class="cakebox-title">مبروك الفوز!</div>
+    <div class="cakebox-sub">علبة نحول 🎂 — جائزة المجموعة الفائزة</div>
+    <img class="cakebox-img" src="CakeBox.png" alt="CakeBox" />
+    <div class="cakebox-team" id="cakebox-team"></div>
+    <button class="cakebox-close" onclick="closeCakebox()">🎊 تهانينا!</button>
+  </div>
+</div>
 
 <!-- ══════════ NAV ══════════ -->
 <div id="nav">
@@ -1331,7 +1627,6 @@ function triggerSlideAnimations(n){
     const items=document.querySelectorAll('#tl .tl-item');
     items.forEach((it,i)=>setTimeout(()=>it.classList.add('revealed'),100+i*220));
   }
-  if(n===6){ startAkhiraCounter(); }  // s8 akhira counter
   if(n===7){ initDragDrop(); }         // s7 drag & drop
   if(n===8){ initQuiz(); }             // s9 individual quiz
   if(n===9){ gcInit(); }               // s10 group competition
@@ -1442,6 +1737,7 @@ function initQuiz(){
   if(quizStarted) return;
   quizStarted=true;
   qIdx=0; score=0;
+  buildGiftAssignment();
   renderQ();
 }
 
@@ -1472,31 +1768,131 @@ function renderQ(){
   document.getElementById('q-next').style.display='none';
 }
 
-function selectAnswer(i){
-  const q=questions[qIdx];
-  const opts=document.querySelectorAll('.q-opt');
-  const fb=document.getElementById('q-feedback');
 
-  if(i===q.ans){
-    // CORRECT
-    opts.forEach(o=>o.classList.add('disabled'));
-    opts[i].classList.add('correct');
-    if(wrongAttempts===0) score++;
-    fb.className='q-feedback correct';
-    fb.textContent='✅ أحسنت! '+q.exp;
-    document.getElementById('q-score-live').textContent='النقاط: '+toAr(score);
-    document.getElementById('q-next').style.display='block';
+// ── GIFT SYSTEM ──
+// Inventory: 15 chips, 6 biscuits, 12 cakerolls, 5 drinks
+// Each question gets exactly ONE gift assignment:
+//   - 3 randomly chosen questions → BUNDLE (one of each: chips + biscuit + cakeroll + drink shown together)
+//   - 7 remaining questions → a single snack picked by weighted random from remaining stock
+//     Remaining after 3 bundles use 3 of each: chips×12, biscuit×3, cake×9, drink×2
+//     Weighted pool for the 7 singles: 12+3+9+2 = 26 total weight across 4 types
+
+const GIFT_SNACKS = [
+  { id:"chips",   name:"شيبس",    img:"chips.png"   },
+  { id:"biscuit", name:"بسكويت", img:"biscuit.png" },
+  { id:"cake",    name:"كيك رول", img:"cake.png"    },
+  { id:"drink",   name:"مشروب",   img:"drink.png"   },
+];
+
+// giftAssignment[i] = { bundle: true } OR { bundle: false, snackIdx: N }
+let giftAssignment = [], giftRevealed = false;
+
+function shuffle(arr){
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function buildGiftAssignment(){
+  // Pick which 3 of the 10 question slots are bundle questions
+  const positions = shuffle([0,1,2,3,4,5,6,7,8,9]);
+  const bundleSlots = new Set(positions.slice(0, 3));
+  const singleSlots = positions.slice(3); // exactly 7 slots
+
+  // Remaining inventory after 3 bundles consume 3 of each:
+  // chips:12, biscuit:3, cake:9, drink:2 → 26 items total
+  const remainingPool = [];
+  const addToPool = (idx, count) => { for(let k=0; k<count; k++) remainingPool.push(idx); };
+  addToPool(0, 12);
+  addToPool(1,  3);
+  addToPool(2,  9);
+  addToPool(3,  2);
+  shuffle(remainingPool); // randomise order of all 26 items
+
+  // Distribute ALL 26 items across the 7 single slots
+  // 26 / 7 = 3 remainder 5 → 5 slots get 4 items, 2 slots get 3 items
+  const singleGifts = Array.from({length: 7}, () => []);
+  remainingPool.forEach((snack, i) => {
+    singleGifts[i % 7].push(snack);
+  });
+
+  // Build final assignment indexed 0–9
+  giftAssignment = new Array(10);
+  bundleSlots.forEach(q => {
+    giftAssignment[q] = { bundle: true, snacks: [0,1,2,3] };
+  });
+  singleSlots.forEach((q, i) => {
+    giftAssignment[q] = { bundle: false, snacks: singleGifts[i] };
+  });
+}
+
+function showGift(qIndex){
+  giftRevealed = false;
+  const gift = giftAssignment[qIndex];
+
+  // Reset to closed state
+  document.getElementById("gift-box-wrap").style.display    = "block";
+  document.getElementById("gift-tap-hint").style.display    = "block";
+  document.getElementById("gift-reveal-area").style.display = "none";
+  document.getElementById("gift-close-btn").style.display   = "none";
+  document.getElementById("gift-snack-grid").innerHTML      = "";
+  document.getElementById("gift-top-label").textContent     = gift.bundle ? "هدية مميزة!" : "هدية السؤال";
+  document.getElementById("gift-reveal-title").textContent  = gift.bundle ? "واحدة من كل شيء!" : "";
+
+  // Pre-build snack cards (hidden until tap)
+  const grid = document.getElementById("gift-snack-grid");
+  gift.snacks.forEach((idx, i) => {
+    const s = GIFT_SNACKS[idx];
+    const card = document.createElement("div");
+    card.className = "gift-snack-card";
+    card.style.setProperty("--d", (i * 0.09) + "s");
+    card.innerHTML = `<img src="${s.img}" alt="${s.name}" /><div class="snack-label">${s.name}</div>`;
+    grid.appendChild(card);
+  });
+
+  document.getElementById("gift-overlay").classList.add("active");
+  launchConfetti();
+}
+
+function openGift(){
+  if(giftRevealed) return;
+  giftRevealed = true;
+
+  document.getElementById("gift-box-wrap").style.display    = "none";
+  document.getElementById("gift-tap-hint").style.display    = "none";
+  document.getElementById("gift-reveal-area").style.display = "flex";
+  document.getElementById("gift-close-btn").style.display   = "inline-block";
+
+  launchConfetti();
+}
+
+function closeGift(){
+  document.getElementById("gift-overlay").classList.remove("active");
+  document.getElementById("q-next").style.display = "block";
+}
+
+function selectAnswer(i){
+  const q = questions[qIdx];
+  // Scope to ONLY the current question's option buttons
+  const opts = document.getElementById("q-opts").querySelectorAll(".q-opt");
+  const fb = document.getElementById("q-feedback");
+  if(i === q.ans){
+    opts.forEach(o => o.classList.add("disabled"));
+    opts[i].classList.add("correct");
+    if(wrongAttempts === 0) score++;
+    fb.className = "q-feedback correct";
+    fb.textContent = "✅ أحسنت! " + q.exp;
+    document.getElementById("q-score-live").textContent = "النقاط: " + toAr(score);
+    setTimeout(() => showGift(qIdx), 600);
   } else {
-    // WRONG – allow retry
     wrongAttempts++;
-    opts[i].classList.add('wrong','disabled');
-    // shake the card
-    const card=document.getElementById('q-card');
-    card.classList.remove('shake');
-    void card.offsetWidth; // reflow
-    card.classList.add('shake');
-    fb.className='q-feedback retry';
-    fb.textContent='❌ إجابة خاطئة! حاول مرة أخرى…';
+    opts[i].classList.add("wrong", "disabled");
+    const card = document.getElementById("q-card");
+    card.classList.remove("shake"); void card.offsetWidth; card.classList.add("shake");
+    fb.className = "q-feedback retry";
+    fb.textContent = "❌ إجابة خاطئة! حاول مرة أخرى…";
   }
 }
 
@@ -1676,12 +2072,12 @@ function updateGcScoreboard(){
 
 // ─── TIE BREAKER ───
 const gcTieQuestions = [
-  { q:"ما اسم الحديث الذي درسناه اليوم؟", opts:["حديث الإخلاص","حديث الصدقة الجارية","حديث النية","حديث الأمانة"], ans:1 },
-  { q:"كم شرطًا للصدقة الجارية؟", opts:["لا شروط","أن تكون مالًا فقط","أن يستمر نفعها","أن تُعطى للمسجد فقط"], ans:2 },
-  { q:"ما الذي يرفع الله به درجة الوالد في الجنة؟", opts:["أعمال الوالد نفسه فقط","دعاء الولد الصالح واستغفاره","تصدق الأبناء بالمال","حج الأبناء عن الوالدين"], ans:1 },
-  { q:"أيّ هذه الأعمال ينقطع بالوفاة؟", opts:["الوقف","الصيام اليومي","المسجد المبني","المصحف الموزَّع"], ans:1 },
-  { q:"ما رقم الحديث في صحيح مسلم؟", opts:["١٦٣١","٢١٤٣","٩٨٤","٣٣٢٢"], ans:0 },
-  { q:"من الصحابي الذي روى الحديث في صحيح مسلم؟", opts:["عمر بن الخطاب","علي بن أبي طالب","أبو هريرة","معاوية"], ans:2 },
+  { q:"ذكر الإمام النووي في شرح مسلم أن الصدقة الجارية تشمل الوقف — ما الشرط الفقهي الجوهري الذي يجعل الوقفَ صدقةً جاريةً لا منقطعة؟", opts:["أن يكون الواقف حيًّا وقت الانتفاع","أن يكون الموقوف عليه جهةً خيرية مستمرة لا تنقطع بوفاة الواقف","أن يُسجَّل الوقف في محكمة شرعية","أن يوافق عليه الورثة"], ans:1 },
+  { q:"في حديث أنس المتعلق بما يتبع الميت، ذُكر أن العمل يبقى — ما الوجه الفقهي الذي يُفرّق بين عمل المسلم الذي ينقطع وعمله الذي لا ينقطع وفق الحديث؟", opts:["النية عند العمل هي الفارق الوحيد","استمرار أثر العمل ونفعه للناس بعد الوفاة هو الفارق","مقدار المال المُنفَق هو المعيار","عدد الأشخاص المستفيدين هو الفارق"], ans:1 },
+  { q:"قال الإمام ابن القيم إن العلم النافع من أفضل الصدقات الجارية — ما الضابط الدقيق الذي يُميّز العلم النافع الذي يجري ثوابه من العلم الذي لا يجري؟", opts:["أن يُتعلَّم في مؤسسة رسمية معترف بها","أن يُنقل ويُطبَّق وينتفع به الناس بعد وفاة صاحبه","أن يُحفظ عن ظهر قلب","أن يكون علمًا شرعيًا فقط دون العلوم الأخرى"], ans:1 },
+  { q:"جاء في بعض روايات حديث الصدقة الجارية إضافة 'رباط في سبيل الله' — في أي كتاب من كتب الحديث وردت هذه الرواية الموسَّعة؟", opts:["صحيح البخاري","سنن أبي داود","مسند أحمد وسنن النسائي","صحيح ابن حبان"], ans:2 },
+  { q:"ما الفرق الجوهري بين 'الولد الصالح يدعو له' الوارد في الحديث وبين صدقة الأحياء عن الأموات من حيث وصول الثواب وفق المذاهب الأربعة؟", opts:["لا فرق؛ كل ما يُهدى للميت يصله قطعًا باتفاق المذاهب","الدعاء يصل بالإجماع، أما إهداء ثواب الأعمال البدنية ففيه خلاف مشهور بين المذاهب","صدقة الأحياء تصل دون الدعاء عند أكثر العلماء","الدعاء وحده لا ينفع الميت عند الشافعية"], ans:1 },
+  { q:"استنبط العلماء من حديث الصدقة الجارية مشروعية نظام الوقف — أيّ الخلفاء الراشدين أول من أنشأ وقفًا في الإسلام بأمر النبي ﷺ ومَن أين كان؟", opts:["أبو بكر الصديق من أرض في المدينة","عمر بن الخطاب من أرض خيبر","علي بن أبي طالب من أرض ينبع","عثمان بن عفان من بئر رومة"], ans:1 },
 ];
 let gcTieQPool=[], gcTieRound=0;
 
@@ -1691,7 +2087,7 @@ function gcCheckTie(){
   if(tiedTeams.length===1){
     gcShowWinner();
   } else {
-    // Start tiebreaker
+    // Start tiebreaker — show announcement panel first
     gcTiedTeams = tiedTeams;
     gcTieScores = {};
     tiedTeams.forEach(t=>{ gcTieScores[t]=0; });
@@ -1701,10 +2097,19 @@ function gcCheckTie(){
     document.getElementById('gc-question-area').style.display='none';
     document.getElementById('gc-tiebreaker-screen').style.display='block';
     document.getElementById('gc-winner-screen').style.display='none';
+    // Show announce panel, hide question panel
+    document.getElementById('gc-tie-announce-panel').style.display='block';
+    document.getElementById('gc-tie-question-panel').style.display='none';
     document.getElementById('gc-tie-teams-label').textContent =
       'تعادلت: '+tiedTeams.map(i=>teamEmojis[i]+' '+teamNames[i]).join(' و ');
-    gcLoadTieQuestion();
   }
+}
+
+function gcRevealTieQuestion(){
+  // Hide announce panel, show question panel, then load the question
+  document.getElementById('gc-tie-announce-panel').style.display='none';
+  document.getElementById('gc-tie-question-panel').style.display='block';
+  gcLoadTieQuestion();
 }
 
 function gcLoadTieQuestion(){
@@ -1768,6 +2173,9 @@ function gcTieNext(){
     // Show team selector to pick which tied team answered correctly
     gcShowTieWinnerPicker();
   } else {
+    // Another round — make sure question panel is visible and load next question
+    document.getElementById('gc-tie-announce-panel').style.display='none';
+    document.getElementById('gc-tie-question-panel').style.display='block';
     gcLoadTieQuestion();
   }
 }
@@ -1823,12 +2231,22 @@ function gcShowWinner(){
   });
 
   launchConfetti();
+  // Show cakebox for winner(s)
+  setTimeout(()=>{
+    const wText = winners.length===1
+      ? teamEmojis[winners[0]]+' '+teamNames[winners[0]]
+      : winners.map(i=>teamEmojis[i]+' '+teamNames[i]).join(' & ');
+    const wColor = winners.length===1 ? teamColors[winners[0]] : '#ffd700';
+    showCakebox(wText, wColor);
+  }, 1200);
 }
 
 function gcRestart(){
   gcStarted=false;
   document.querySelectorAll('.gc-team-card').forEach(c=>c.classList.remove('active-team','winner-team'));
   document.getElementById('gc-tiebreaker-screen').style.display='none';
+  document.getElementById('gc-tie-announce-panel').style.display='block';
+  document.getElementById('gc-tie-question-panel').style.display='none';
   gcInit();
 }
 
@@ -1968,66 +2386,18 @@ function ddReset(){
 }
 
 // ═══════════════════════════════════════
-// حصالة الآخرة — AKHIRA COUNTER
-// ═══════════════════════════════════════
-let akhiraCount = 0;
-let akhiraTimer = null;
-let akhiraRunning = false;
 
-const akhiraEquivs = [
-  { secs:10,   msg:'مثل <span>١٠</span> أشخاص توضؤوا من بئرك وصلّوا' },
-  { secs:60,   msg:'مثل <span>دقيقة</span> من الثواب المتواصل — كمصحف يُقرأ منه' },
-  { secs:300,  msg:'٣٠٠ ثانية: يُعادل <span>خمس دقائق</span> من صلاة جماعية في مسجد بنيته' },
-  { secs:600,  msg:'٦٠٠ ثانية: كأن <span>طالبًا</span> تعلّم على يديك لمدة ١٠ دقائق' },
-  { secs:1800, msg:'نصف ساعة — <span>١,٨٠٠ حسنة</span> جارية إن بنيتَ مسجدًا أو وقفًا' },
-  { secs:3600, msg:'ساعة كاملة! هكذا يعمل <span>الوقف</span> — بلا توقف، حتى بعد الموت' },
-  { secs:86400,msg:'يوم كامل = <span>٨٦,٤٠٠</span> ثانية من الأجر — فكم يُجمع في سنة؟' },
-];
-
-function formatAkhiraNum(n){
-  const s = n.toString();
-  return s.replace(/\d/g, d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+// ── CAKEBOX WINNER ──
+function showCakebox(winnerText, winnerColor){
+  document.getElementById('cakebox-team').textContent = winnerText;
+  document.getElementById('cakebox-team').style.color = winnerColor || '#ffd700';
+  document.getElementById('cakebox-overlay').classList.add('active');
+  launchConfetti();
+}
+function closeCakebox(){
+  document.getElementById('cakebox-overlay').classList.remove('active');
 }
 
-function updateAkhiraEquiv(n){
-  const el = document.getElementById('akhira-equiv');
-  for(let i=akhiraEquivs.length-1; i>=0; i--){
-    if(n >= akhiraEquivs[i].secs){
-      el.innerHTML = akhiraEquivs[i].msg;
-      return;
-    }
-  }
-  el.innerHTML = 'ابدأ العدّاد لترى كيف يتراكم الأجر ثانيةً بثانية 🌱';
-}
-
-function startAkhiraCounter(){
-  // Auto-start when slide opens, but paused
-}
-
-function toggleAkhiraCounter(){
-  const btn = document.getElementById('akhira-btn');
-  if(akhiraRunning){
-    clearInterval(akhiraTimer);
-    akhiraRunning = false;
-    btn.textContent = '▶ استأنف العدّاد';
-    btn.classList.remove('running');
-  } else {
-    akhiraRunning = true;
-    btn.textContent = '⏸ إيقاف';
-    btn.classList.add('running');
-    akhiraTimer = setInterval(()=>{
-      akhiraCount++;
-      const numEl = document.getElementById('akhira-num');
-      numEl.textContent = formatAkhiraNum(akhiraCount);
-      numEl.classList.remove('tick');
-      void numEl.offsetWidth;
-      numEl.classList.add('tick');
-      updateAkhiraEquiv(akhiraCount);
-    }, 1000);
-  }
-}
-
-// ═══════════════════════════════════════
 function launchConfetti(){
   const colors=['#ffd700','#ff6b6b','#4ade80','#60a5fa','#f59e0b','#ec4899','#c9a84c'];
   for(let i=0;i<80;i++){
